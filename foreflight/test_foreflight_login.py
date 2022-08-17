@@ -112,3 +112,31 @@ def test_fore_flight_login_with_valid_email_and_invalid_pw():
     page_source = driver.page_source
 
     assert 'Invalid username or password' in page_source
+    
+    
+def test_fore_flight_login_with_invalid_email_and_valid_pw():
+
+    driver = webdriver.Chrome('C:\webDrivers\chromedriver.exe')
+
+    # go to foreflight.com
+    driver.get('https://www.foreflight.com')
+
+    #find/ click login button to take us to login page
+    driver.find_element(By.ID, 'login').click()
+
+    # had an issue here with next step not loading in time, so heres my fix
+    driver.implicitly_wait(10)
+
+    #type in invalid email into email text box
+    driver.find_element(By.ID, 'email').send_keys(invalid_email)
+
+    #type in valid pw to pw text box
+    driver.find_element(By.ID, 'password').send_keys(valid_pw)
+
+    # find/ click login button after typing in credentials
+    driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/div/form/div/div[3]/input').click()
+
+    # get page source
+    page_source = driver.page_source
+
+    assert 'Invalid username or password' in page_source
