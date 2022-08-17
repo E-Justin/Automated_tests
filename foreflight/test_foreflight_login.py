@@ -115,7 +115,8 @@ def test_fore_flight_login_with_valid_email_and_invalid_pw():
     
     
 def test_fore_flight_login_with_invalid_email_and_valid_pw():
-
+    """ tests foreflight login with invalid email and valid pw
+        login should be unsuccessful and display, 'invalid username or password' on the page"""
     driver = webdriver.Chrome('C:\webDrivers\chromedriver.exe')
 
     # go to foreflight.com
